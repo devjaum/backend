@@ -9,13 +9,13 @@ import { ChatGateway } from './chat/chat.gateway';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',   // altere se seu user for diferente
-      password: 'Kalista@321',   // altere para sua senha
-      database: 'chatdb',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true, // cria as tabelas automaticamente (bom para dev)
+      synchronize: true,
     }),
     UsersModule,
     MessagesModule,
